@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  api-go:
+    build: . #it searches for DockerFile
+    container_name: alt_sch_compose
+    volumes:
+      - .:/go/src/go-docker
+    ports:
+      - "8001:8080"
+    networks:
+      - alt_sch
+
+  mysql:
+    image: mysql:latest
+    restart: unless-stopped
+    tty: true
+    container_name: altsch-go
+    ports:
+      - "3307:3306"
+    volumes:
+      - .:/var/lib
+      - .:/mysql:var/lib/mysql 
+      - ./mysql-files:/var/lib/mysql-files
+    environment:
+      MYSQL_DATABASE: altsch-go
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - alt_sch
+
+networks:
+  alt_sch:
+    external: true
