@@ -1,7 +1,7 @@
 package model
 
 import (
-	"server-client/src/setup"
+	setup "sever-client/src/setups"
 
 	"github.com/jinzhu/gorm"
 )
@@ -10,13 +10,12 @@ var db *gorm.DB
 
 type Book struct {
 	gorm.Model
-	Name     string `gorm:json:"name"`
-	Author   string `json:"author`
-	Language string `json:language`
+	Name     string `gorm:""json:"name"`
+	Author   string `json:"author"`
+	Language string `json:"language"`
 }
 
 func init() {
-
 	setup.Connection()
 	db = setup.GetDB()
 	db.AutoMigrate(&Book{})
