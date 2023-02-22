@@ -6,7 +6,6 @@ import (
 	"sever-client/src/router"
 	setup "sever-client/src/setups"
 
-	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 )
 
@@ -17,5 +16,5 @@ func main() {
 	router.RegisterRoutes(r)
 
 	http.Handle("/", r)
-	log.Fatal(http.ListenAndServe("localhost:8080", r))
+	log.Fatal(http.ListenAndServe(":8080", r))
 }

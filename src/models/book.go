@@ -33,10 +33,10 @@ func GetAllBooks() []Book {
 	return Books
 }
 
-func GetBooksById(Id int) *Book {
+func GetBooksById(Id int) (*Book, *gorm.DB) {
 	var book Book
 	db.Where("ID=?", Id).Find(&book)
-	return &book
+	return &book, db
 }
 
 func DeleteBookById(Id int) Book {
